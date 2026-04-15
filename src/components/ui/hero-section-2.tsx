@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from "@/lib/utils";
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Globe, PhoneCall, MapPin } from 'lucide-react';
 
 // Icon component for contact details
@@ -19,12 +19,13 @@ const InfoIcon = ({ type }: { type: 'website' | 'phone' | 'address' }) => {
 
 
 // Prop types for the HeroSection component
-interface HeroSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+interface HeroSectionProps {
   logo?: {
     url?: string;
     alt?: string;
     text?: string;
   };
+  className?: string;
   slogan?: string;
   title: React.ReactNode;
   subtitle: string;
@@ -42,10 +43,10 @@ interface HeroSectionProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
-  ({ className, logo, slogan, title, subtitle, typingEffect, callToAction, backgroundImage, contactInfo, ...props }, ref) => {
+  ({ className, logo, slogan, title, subtitle, typingEffect, callToAction, backgroundImage, contactInfo }, ref) => {
     
     // Animation variants for the container to orchestrate children animations
-    const containerVariants = {
+    const containerVariants: Variants = {
       hidden: { opacity: 0 },
       visible: {
         opacity: 1,
@@ -57,7 +58,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
     };
 
     // Animation variants for individual text/UI elements
-    const itemVariants = {
+    const itemVariants: Variants = {
       hidden: { y: 20, opacity: 0 },
       visible: {
         y: 0,
@@ -79,7 +80,6 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        {...props}
       >
         {/* Left Side: Content */}
         <div className="flex w-full flex-col justify-between p-8 md:w-[55%] md:p-12 lg:p-16 xl:p-24 bg-white z-10">
