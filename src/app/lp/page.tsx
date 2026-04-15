@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, Variants } from "framer-motion";
 import {
   Compass,
   DraftingCompass,
@@ -103,14 +103,14 @@ function Counter({
 }
 
 /* ─── Animation Variants ─── */
-const stagger = {
+const stagger: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: { staggerChildren: 0.15, delayChildren: 0.2 },
   },
 };
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { y: 30, opacity: 0 },
   visible: {
     y: 0,
